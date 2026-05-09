@@ -1,0 +1,68 @@
+.page {
+  display: grid;
+  gap: 24px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.title {
+  margin: 0;
+  color: #8bd7df;
+  font-size: 34px;
+  line-height: 1.15;
+  text-shadow: 0 0 12px rgba(139, 215, 223, 0.26);
+}
+
+.date {
+  margin: 8px 0 0;
+  color: #d49bc4;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.dateControls {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.label {
+  width: 100%;
+  color: #9eb9c4;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.dateInput {
+  min-height: 38px;
+  padding: 8px 10px;
+  border: 1px solid rgba(91, 172, 184, 0.24);
+  border-radius: 8px;
+  color: #d7e7ec;
+  background: rgba(7, 13, 32, 0.86);
+}
+
+.dateInput:focus {
+  border-color: #8bd7df;
+  outline: 2px solid rgba(139, 215, 223, 0.18);
+}
+
+@media (max-width: 720px) {
+  .header {
+    flex-direction: column;
+  }
+
+  .dateControls {
+    width: 100%;
+  }
+
+  .dateInput {
+    flex: 1;
+  }
+}

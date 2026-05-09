@@ -1,0 +1,26 @@
+.section {
+  display: grid;
+  gap: 14px;
+}
+
+.title {
+  margin: 0;
+  color: #8bd7df;
+  font-size: 24px;
+}
+
+.list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.empty {
+  padding: 20px;
+  border: 1px dashed rgba(91, 172, 184, 0.28);
+  border-radius: 8px;
+  color: #9eb9c4;
+  background: rgba(7, 13, 32, 0.72);
+}

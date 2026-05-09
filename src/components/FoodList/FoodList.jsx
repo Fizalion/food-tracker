@@ -1,12 +1,24 @@
-const FoodList = ({ entries }) => {
+import FoodEntry from "../FoodEntry/FoodEntry";
+import styles from "./FoodList.module.css";
+
+const FoodList = ({ entries, removeFoodEntryById }) => {
   return (
-    <ul>
-      {entries.map(({ id, title, calories }) => (
-        <li key={id}>
-          {title} — {calories} ккал
-        </li>
-      ))}
-    </ul>
+    <section className={styles.section}>
+      <h2 className={styles.title}>Записи</h2>
+      {entries.length === 0 ? (
+        <div className={styles.empty}>Записей пока нет</div>
+      ) : (
+        <ul className={styles.list}>
+          {entries.map((entry) => (
+            <FoodEntry
+              key={entry.id}
+              entry={entry}
+              removeFoodEntryById={removeFoodEntryById}
+            />
+          ))}
+        </ul>
+      )}
+    </section>
   );
 };
 

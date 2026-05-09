@@ -1,0 +1,37 @@
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+  border: 1px solid rgba(91, 172, 184, 0.2);
+  border-radius: 8px;
+  background: rgba(7, 13, 32, 0.72);
+}
+
+.content {
+  display: grid;
+  gap: 4px;
+}
+
+.date {
+  color: #85a8b6;
+  font-size: 13px;
+}
+
+.title {
+  color: #d7e7ec;
+  font-weight: 800;
+}
+
+.calories {
+  color: #d49bc4;
+  font-weight: 700;
+}
+
+@media (max-width: 560px) {
+  .item {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}

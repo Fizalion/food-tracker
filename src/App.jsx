@@ -1,26 +1,25 @@
-import { useState } from "react";
-import CalorieCircle from "./components/CalorieCircle/CalorieCircle";
-import FoodInput from "./components/FoodInput/FoodInput";
-import FoodList from "./components/FoodList/FoodList";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { Navigate, Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout/Layout";
+import DiaryPage from "./pages/DiaryPage/DiaryPage";
+import HistoryPage from "./pages/HistoryPage/HistoryPage";
+import { selectFoodEntries } from "./redux/foodEntries/foodEntriesSlice";
+import { saveFoodEntries } from "./utils/storage";
 
 function App() {
-  const [entries, setEntries] = useState([]);
-
-  const totalCalories = entries.reduce((acc, entry) => {
-    return acc + entry.calories;
-  }, 0);
-
-  function addFoodEntry(entry) {
-    setEntries([...entries, entry]);
-  }
+  const entries = useSelector(selectFoodEntries);
+  useEffect(() => saveFoodEntries(entries), [entries]);
 
   return (
-    <div>
-      <h1>Food Tracker</h1>
-      <CalorieCircle totalCalories={totalCalories} />
-      <FoodInput addFoodEntry={addFoodEntry} />
-      <FoodList entries={entries} />
-    </div>
+    <Layout>
+      <Routes>
+        <Route path="/" element={<DiaryPage />} />
+        <Route path="/day/:date" element={<DiaryPage />} />
+        <Route path="/history" element={<HistoryPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Layout>
   );
 }
 
