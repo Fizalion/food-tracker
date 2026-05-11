@@ -1,17 +1,83 @@
+import { useState } from "react";
 import Button from "../Button/Button";
 import styles from "./FoodEntry.module.css";
+import { useFoodEntryEdit } from "./useFoodEntryEdit";
 
-const FoodEntry = ({ entry, removeFoodEntryById }) => {
-  const { id, title, calories, date } = entry;
+const FoodEntry = ({ entry, removeFoodEntryById, updateFoodEntryById }) => {
+  const { id, title, calories } = entry;
+
+  const {
+    isEditing,
+    editTitle,
+    editCalories,
+    editError,
+    handleEditTitleChange,
+    handleEditCaloriesChange,
+    handleStartEdit,
+    handleSaveEdit,
+    handleCancelEdit,
+  } = useFoodEntryEdit(entry, updateFoodEntryById);
+
+  const [isConfirmingDelete, setIsConfirmingDelete] = useState(false);
+
+  const handleStartDelete = () => setIsConfirmingDelete(true);
+  const handleCancelDelete = () => setIsConfirmingDelete(false);
+  const handleConfirmDelete = () => removeFoodEntryById(id);
+
+  const handleEditClick = () => {
+    setIsConfirmingDelete(false);
+    handleStartEdit();
+  };
 
   return (
     <li className={styles.item}>
-      <div className={styles.content}>
-        <span className={styles.date}>Дата: {date}</span>
-        <span className={styles.title}>{title}</span>
-        <span className={styles.calories}>{calories} ккал</span>
-      </div>
-      <Button onClick={() => removeFoodEntryById(id)}>Удалить</Button>
+      {isEditing ? (
+        <div className={styles.editForm}>
+          <input
+            className={styles.input}
+            aria-label="Название еды"
+            value={editTitle}
+            onChange={handleEditTitleChange}
+          />
+
+          <input
+            className={styles.input}
+            aria-label="Калории"
+            value={editCalories}
+            onChange={handleEditCaloriesChange}
+            type="number"
+            min="1"
+          />
+
+          {editError && <div className={styles.error}>{editError}</div>}
+
+          <div className={styles.actions}>
+            <Button onClick={handleSaveEdit}>Сохранить</Button>
+            <Button onClick={handleCancelEdit}>Отмена</Button>
+          </div>
+        </div>
+      ) : (
+        <>
+          <div className={styles.content}>
+            <span className={styles.title}>{title}</span>
+            <span className={styles.calories}>{calories} ккал</span>
+          </div>
+
+          {isConfirmingDelete === false && (
+            <div className={styles.actions}>
+              <Button onClick={handleEditClick}>Редактировать</Button>
+              <Button onClick={handleStartDelete}>Удалить</Button>
+            </div>
+          )}
+
+          {isConfirmingDelete === true && (
+            <div className={styles.actions}>
+              <Button onClick={handleConfirmDelete}>Точно удалить</Button>
+              <Button onClick={handleCancelDelete}>Отмена</Button>
+            </div>
+          )}
+        </>
+      )}
     </li>
   );
 };

@@ -9,6 +9,7 @@ import {
   removeFoodEntryById,
   selectFoodEntriesByDate,
   selectTotalCaloriesByDate,
+  updateFoodEntryById,
 } from "../../redux/foodEntries/foodEntriesSlice";
 import { formatDayTitle, getTodayDateKey } from "../../utils/date";
 import styles from "./DiaryPage.module.css";
@@ -29,6 +30,8 @@ const DiaryPage = () => {
 
   const handleAddFoodEntry = (entry) => dispatch(addFoodEntry(entry));
   const handleRemoveFoodEntryById = (id) => dispatch(removeFoodEntryById(id));
+  const handleUpdateFoodEntryById = (entry) =>
+    dispatch(updateFoodEntryById(entry));
 
   const handleSelectDate = (date) => navigate(`/day/${date}`);
 
@@ -68,6 +71,7 @@ const DiaryPage = () => {
       <FoodList
         entries={selectedDateEntries}
         removeFoodEntryById={handleRemoveFoodEntryById}
+        updateFoodEntryById={handleUpdateFoodEntryById}
       />
     </div>
   );

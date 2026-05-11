@@ -1,8 +1,9 @@
 import { useState } from "react";
 
-export const useFoodForm = (addFoodEntry, selectedDate) => {
+export const useFoodForm = (addFoodEntry, selectedDate, onSuccess) => {
   const [food, setFood] = useState("");
   const [calories, setCalories] = useState("");
+  const [error, setError] = useState("");
 
   const handleFoodChange = (event) => setFood(event.target.value);
   const handleCaloriesChange = (event) => setCalories(event.target.value);
@@ -13,7 +14,13 @@ export const useFoodForm = (addFoodEntry, selectedDate) => {
     const trimmedFood = food.trim();
     const caloriesAmount = Number(calories);
 
-    if (!trimmedFood || caloriesAmount <= 0) {
+    if (!trimmedFood) {
+      setError("Введите название еды");
+      return;
+    }
+
+    if (calories === "" || caloriesAmount < 1 || Number.isNaN(caloriesAmount)) {
+      setError("Введите калории больше 0");
       return;
     }
 
@@ -22,11 +29,14 @@ export const useFoodForm = (addFoodEntry, selectedDate) => {
       title: trimmedFood,
       calories: caloriesAmount,
       date: selectedDate,
+      createdAt: new Date().toISOString(),
     };
 
     addFoodEntry(entry);
     setFood("");
     setCalories("");
+    setError("");
+    onSuccess?.();
   };
 
   return {
@@ -35,5 +45,6 @@ export const useFoodForm = (addFoodEntry, selectedDate) => {
     handleFoodChange,
     calories,
     handleCaloriesChange,
+    error,
   };
 };

@@ -3,4 +3,5 @@ export type FoodEntry = {
   title: string;
   calories: number;
   date: string;
+  createdAt: string;
 };
