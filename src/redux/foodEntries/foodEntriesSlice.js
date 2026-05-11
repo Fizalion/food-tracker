@@ -17,13 +17,22 @@ export const foodEntriesSlice = createSlice({
     removeFoodEntryById: (state, action) => {
       return state.filter((entry) => entry.id !== action.payload);
     },
+
+    updateFoodEntryById: (state, action) => {
+      const entry = state.find((entry) => entry.id === action.payload.id);
+      if (entry) {
+        entry.title = action.payload.title;
+        entry.calories = action.payload.calories;
+      }
+    },
   },
   selectors: {
     selectFoodEntries: (state) => state,
   },
 });
 
-export const { addFoodEntry, removeFoodEntryById } = foodEntriesSlice.actions;
+export const { addFoodEntry, removeFoodEntryById, updateFoodEntryById } =
+  foodEntriesSlice.actions;
 export const { selectFoodEntries } = foodEntriesSlice.selectors;
 
 export const selectAvailableDates = createSelector(

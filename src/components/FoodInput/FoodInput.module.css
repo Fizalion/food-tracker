@@ -35,6 +35,17 @@
   outline: 2px solid rgba(139, 215, 223, 0.18);
 }
 
+.error {
+  grid-column: 1 / -1;
+  padding: 10px 12px;
+  border: 1px solid rgba(236, 112, 144, 0.34);
+  border-radius: 8px;
+  color: #f3a6b9;
+  background: rgba(113, 30, 54, 0.18);
+  font-size: 14px;
+  font-weight: 700;
+}
+
 @media (max-width: 760px) {
   .form {
     grid-template-columns: 1fr;

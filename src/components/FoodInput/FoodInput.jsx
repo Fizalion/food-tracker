@@ -1,18 +1,23 @@
+import { useRef } from "react";
 import Button from "../Button/Button";
-import { useFoodForm } from "./useFoodForm";
 import styles from "./FoodInput.module.css";
+import { useFoodForm } from "./useFoodForm";
 
 const FoodInput = ({ addFoodEntry, selectedDate }) => {
+  const foodInputRef = useRef(null);
+  const focusOnFoodInput = () => foodInputRef.current?.focus();
+
   const {
     handleSubmit,
     food,
     handleFoodChange,
     calories,
     handleCaloriesChange,
-  } = useFoodForm(addFoodEntry, selectedDate);
+    error,
+  } = useFoodForm(addFoodEntry, selectedDate, focusOnFoodInput);
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit} noValidate>
       <div className={styles.field}>
         <label className={styles.label} htmlFor="food-title">
           Название еды
@@ -20,6 +25,7 @@ const FoodInput = ({ addFoodEntry, selectedDate }) => {
         <input
           className={styles.input}
           id="food-title"
+          ref={foodInputRef}
           value={food}
           onChange={handleFoodChange}
         />
@@ -40,6 +46,8 @@ const FoodInput = ({ addFoodEntry, selectedDate }) => {
       </div>
 
       <Button type="submit">Добавить</Button>
+
+      {error && <div className={styles.error}>{error}</div>}
     </form>
   );
 };

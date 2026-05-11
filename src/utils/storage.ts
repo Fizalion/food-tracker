@@ -4,8 +4,16 @@ import type { FoodEntry } from "../types/foodEntry";
 export const loadFoodEntries = (): FoodEntry[] => {
   const initialEntries = localStorage.getItem(FOOD_ENTRIES_STORAGE_KEY);
   if (!initialEntries) return [];
-  return JSON.parse(initialEntries);
+
+  try {
+    return JSON.parse(initialEntries);
+  } catch {
+    return [];
+  }
 };
 
-export const saveFoodEntries = (entries: FoodEntry[]): void =>
-  localStorage.setItem(FOOD_ENTRIES_STORAGE_KEY, JSON.stringify(entries));
+export const saveFoodEntries = (entries: FoodEntry[]): void => {
+  try {
+    localStorage.setItem(FOOD_ENTRIES_STORAGE_KEY, JSON.stringify(entries));
+  } catch {}
+};
