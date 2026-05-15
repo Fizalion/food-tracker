@@ -4,15 +4,17 @@ import styles from "./FoodEntry.module.css";
 import { useFoodEntryEdit } from "./useFoodEntryEdit";
 
 const FoodEntry = ({ entry, removeFoodEntryById, updateFoodEntryById }) => {
-  const { id, title, calories } = entry;
+  const { id, title, calories, grams } = entry;
 
   const {
     isEditing,
     editTitle,
-    editCalories,
+    editGrams,
+    editCaloriesPer100g,
     editError,
     handleEditTitleChange,
-    handleEditCaloriesChange,
+    handleEditGramsChange,
+    handleEditCaloriesPer100gChange,
     handleStartEdit,
     handleSaveEdit,
     handleCancelEdit,
@@ -42,9 +44,18 @@ const FoodEntry = ({ entry, removeFoodEntryById, updateFoodEntryById }) => {
 
           <input
             className={styles.input}
-            aria-label="Калории"
-            value={editCalories}
-            onChange={handleEditCaloriesChange}
+            aria-label="Вес, г"
+            value={editGrams}
+            onChange={handleEditGramsChange}
+            type="number"
+            min="1"
+          />
+
+          <input
+            className={styles.input}
+            aria-label="Ккал на 100 г"
+            value={editCaloriesPer100g}
+            onChange={handleEditCaloriesPer100gChange}
             type="number"
             min="1"
           />
@@ -60,6 +71,7 @@ const FoodEntry = ({ entry, removeFoodEntryById, updateFoodEntryById }) => {
         <>
           <div className={styles.content}>
             <span className={styles.title}>{title}</span>
+            <span className={styles.weight}>{grams} г</span>
             <span className={styles.calories}>{calories} ккал</span>
           </div>
 
