@@ -22,7 +22,9 @@ export const foodEntriesSlice = createSlice({
       const entry = state.find((entry) => entry.id === action.payload.id);
       if (entry) {
         entry.title = action.payload.title;
+        entry.grams = action.payload.grams;
         entry.calories = action.payload.calories;
+        entry.caloriesPer100g = action.payload.caloriesPer100g;
       }
     },
   },

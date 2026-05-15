@@ -11,8 +11,10 @@ const FoodInput = ({ addFoodEntry, selectedDate }) => {
     handleSubmit,
     food,
     handleFoodChange,
-    calories,
-    handleCaloriesChange,
+    grams,
+    handleGramsChange,
+    caloriesPer100g,
+    handleCaloriesPer100gChange,
     error,
   } = useFoodForm(addFoodEntry, selectedDate, focusOnFoodInput);
 
@@ -32,16 +34,30 @@ const FoodInput = ({ addFoodEntry, selectedDate }) => {
       </div>
 
       <div className={styles.field}>
-        <label className={styles.label} htmlFor="food-calories">
-          Калории
+        <label className={styles.label} htmlFor="food-grams">
+          Вес, г
         </label>
         <input
           className={styles.input}
-          id="food-calories"
+          id="food-grams"
           type="number"
           min="1"
-          value={calories}
-          onChange={handleCaloriesChange}
+          value={grams}
+          onChange={handleGramsChange}
+        />
+      </div>
+
+      <div className={styles.field}>
+        <label className={styles.label} htmlFor="food-calories-per-100g">
+          Ккал на 100 г
+        </label>
+        <input
+          className={styles.input}
+          id="food-calories-per-100g"
+          type="number"
+          min="1"
+          value={caloriesPer100g}
+          onChange={handleCaloriesPer100gChange}
         />
       </div>
 

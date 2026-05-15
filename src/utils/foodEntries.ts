@@ -10,6 +10,11 @@ export const getTotalCalories = (entries: FoodEntry[]): number =>
     return acc + entry.calories;
   }, 0);
 
+export const calculateCalories = (
+  grams: number,
+  caloriesPer100g: number,
+): number => Math.round((grams * caloriesPer100g) / 100);
+
 export const getAvailableDates = (entries: FoodEntry[]): string[] =>
   [...new Set(entries.map((entry) => entry.date))].sort((a, b) =>
     b.localeCompare(a),

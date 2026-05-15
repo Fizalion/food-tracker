@@ -1,55 +1,72 @@
 import { useState } from "react";
+import { calculateCalories } from "../../utils/foodEntries";
 
 export const useFoodEntryEdit = (entry, updateFoodEntryById) => {
-  const { id, title, calories } = entry;
+  const { id, title, grams, caloriesPer100g } = entry;
 
   const [isEditing, setIsEditing] = useState(false);
   const [editTitle, setEditTitle] = useState(title);
-  const [editCalories, setEditCalories] = useState(String(calories));
+  const [editGrams, setEditGrams] = useState(String(grams));
+  const [editCaloriesPer100g, setEditCaloriesPer100g] = useState(
+    String(caloriesPer100g),
+  );
   const [editError, setEditError] = useState("");
 
   const handleEditTitleChange = (event) => setEditTitle(event.target.value);
 
-  const handleEditCaloriesChange = (event) =>
-    setEditCalories(event.target.value);
+  const handleEditGramsChange = (event) => setEditGrams(event.target.value);
+
+  const handleEditCaloriesPer100gChange = (event) =>
+    setEditCaloriesPer100g(event.target.value);
 
   const handleStartEdit = () => {
     setEditTitle(title);
-    setEditCalories(String(calories));
+    setEditGrams(String(grams));
+    setEditCaloriesPer100g(String(caloriesPer100g));
     setEditError("");
     setIsEditing(true);
   };
 
   const handleSaveEdit = () => {
     const trimmedTitle = editTitle.trim();
-    const caloriesAmount = Number(editCalories);
+    const gramsAmount = Number(editGrams);
+    const caloriesPer100gAmount = Number(editCaloriesPer100g);
 
     if (!trimmedTitle) {
       setEditError("Введите название еды");
       return;
     }
 
+    if (editGrams === "" || gramsAmount < 1 || Number.isNaN(gramsAmount)) {
+      setEditError("Введите вес больше 0");
+      return;
+    }
+
     if (
-      editCalories === "" ||
-      caloriesAmount < 1 ||
-      Number.isNaN(caloriesAmount)
+      editCaloriesPer100g === "" ||
+      caloriesPer100gAmount < 1 ||
+      Number.isNaN(caloriesPer100gAmount)
     ) {
-      setEditError("Введите калории больше 0");
+      setEditError("Введите ккал на 100 г больше 0");
       return;
     }
 
     updateFoodEntryById({
       id,
       title: trimmedTitle,
-      calories: caloriesAmount,
+      grams: gramsAmount,
+      caloriesPer100g: caloriesPer100gAmount,
+      calories: calculateCalories(gramsAmount, caloriesPer100gAmount),
     });
+
     setEditError("");
     setIsEditing(false);
   };
 
   const handleCancelEdit = () => {
     setEditTitle(title);
-    setEditCalories(String(calories));
+    setEditGrams(String(grams));
+    setEditCaloriesPer100g(String(caloriesPer100g));
     setEditError("");
     setIsEditing(false);
   };
@@ -57,10 +74,12 @@ export const useFoodEntryEdit = (entry, updateFoodEntryById) => {
   return {
     isEditing,
     editTitle,
-    editCalories,
+    editGrams,
+    editCaloriesPer100g,
     editError,
     handleEditTitleChange,
-    handleEditCaloriesChange,
+    handleEditGramsChange,
+    handleEditCaloriesPer100gChange,
     handleStartEdit,
     handleSaveEdit,
     handleCancelEdit,

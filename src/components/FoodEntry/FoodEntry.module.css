@@ -19,6 +19,12 @@
   font-weight: 800;
 }
 
+.weight {
+  color: #9eb9c4;
+  font-size: 14px;
+  font-weight: 700;
+}
+
 .calories {
   color: #d49bc4;
   font-weight: 700;
@@ -33,7 +39,7 @@
 
 .editForm {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 140px auto;
+  grid-template-columns: minmax(180px, 1fr) 110px 140px auto;
   align-items: center;
   gap: 10px;
   width: 100%;

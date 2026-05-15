@@ -1,40 +1,57 @@
 import { useState } from "react";
+import { calculateCalories } from "../../utils/foodEntries";
 
 export const useFoodForm = (addFoodEntry, selectedDate, onSuccess) => {
   const [food, setFood] = useState("");
-  const [calories, setCalories] = useState("");
+  const [grams, setGrams] = useState("");
+  const [caloriesPer100g, setCaloriesPer100g] = useState("");
   const [error, setError] = useState("");
 
   const handleFoodChange = (event) => setFood(event.target.value);
-  const handleCaloriesChange = (event) => setCalories(event.target.value);
+  const handleGramsChange = (event) => setGrams(event.target.value);
+  const handleCaloriesPer100gChange = (event) =>
+    setCaloriesPer100g(event.target.value);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const trimmedFood = food.trim();
-    const caloriesAmount = Number(calories);
+    const gramsAmount = Number(grams);
+    const caloriesPer100gAmount = Number(caloriesPer100g);
 
     if (!trimmedFood) {
       setError("Введите название еды");
       return;
     }
 
-    if (calories === "" || caloriesAmount < 1 || Number.isNaN(caloriesAmount)) {
-      setError("Введите калории больше 0");
+    if (grams === "" || gramsAmount < 1 || Number.isNaN(gramsAmount)) {
+      setError("Введите вес больше 0");
+      return;
+    }
+
+    if (
+      caloriesPer100g === "" ||
+      caloriesPer100gAmount < 1 ||
+      Number.isNaN(caloriesPer100gAmount)
+    ) {
+      setError("Введите калории на 100 г больше 0");
       return;
     }
 
     const entry = {
       id: Date.now(),
       title: trimmedFood,
-      calories: caloriesAmount,
+      grams: gramsAmount,
+      caloriesPer100g: caloriesPer100gAmount,
+      calories: calculateCalories(gramsAmount, caloriesPer100gAmount),
       date: selectedDate,
       createdAt: new Date().toISOString(),
     };
 
     addFoodEntry(entry);
     setFood("");
-    setCalories("");
+    setGrams("");
+    setCaloriesPer100g("");
     setError("");
     onSuccess?.();
   };
@@ -43,8 +60,10 @@ export const useFoodForm = (addFoodEntry, selectedDate, onSuccess) => {
     handleSubmit,
     food,
     handleFoodChange,
-    calories,
-    handleCaloriesChange,
+    grams,
+    handleGramsChange,
+    caloriesPer100g,
+    handleCaloriesPer100gChange,
     error,
   };
 };
