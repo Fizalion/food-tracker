@@ -32,8 +32,12 @@
   flex-wrap: wrap;
 }
 
+.controlField {
+  display: grid;
+  gap: 6px;
+}
+
 .label {
-  width: 100%;
   color: #9eb9c4;
   font-size: 14px;
   font-weight: 700;
@@ -60,8 +64,10 @@
 
   .dateControls {
     width: 100%;
+    align-items: stretch;
   }
 
+  .controlField,
   .dateInput {
     flex: 1;
   }

@@ -1,13 +1,69 @@
 .summary {
   display: grid;
-  grid-template-columns: 1fr auto auto;
-  align-items: baseline;
-  gap: 8px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 20px;
   padding: 20px;
   border: 1px solid rgba(91, 172, 184, 0.22);
   border-radius: 8px;
   background: rgba(7, 13, 32, 0.72);
   box-shadow: inset 0 0 20px rgba(91, 172, 184, 0.04);
+}
+
+.goal {
+  display: grid;
+  gap: 6px;
+}
+
+.ring {
+  --progress-color: #8bd7df;
+  width: min(260px, 100%);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background:
+    conic-gradient(
+      var(--progress-color) var(--progress),
+      rgba(91, 172, 184, 0.14) 0
+    );
+  box-shadow:
+    0 0 18px rgba(91, 172, 184, 0.12),
+    inset 0 0 18px rgba(91, 172, 184, 0.08);
+}
+
+.ringExceeded {
+  --progress-color: #f3a6b9;
+}
+
+.ringInner {
+  width: calc(100% - 28px);
+  aspect-ratio: 1;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 8px;
+  border-radius: 50%;
+  background: rgba(7, 13, 32, 0.94);
+  text-align: center;
+}
+
+.amount {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.percent {
+  color: #9eb9c4;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.goal {
+  min-width: 180px;
+  justify-items: end;
+  text-align: right;
 }
 
 .label {
@@ -25,4 +81,31 @@
 .unit {
   color: #d49bc4;
   font-weight: 700;
+}
+
+.remaining {
+  display: grid;
+  gap: 4px;
+  color: #8bd7df;
+  font-weight: 800;
+}
+
+.exceeded {
+  display: grid;
+  gap: 4px;
+  color: #f3a6b9;
+  font-weight: 800;
+}
+
+@media (max-width: 560px) {
+  .summary {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .goal {
+    justify-items: start;
+    text-align: left;
+    width: 100%;
+  }
 }
