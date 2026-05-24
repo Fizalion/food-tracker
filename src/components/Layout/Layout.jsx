@@ -30,7 +30,7 @@ const Layout = ({ children }) => {
 
       <footer className={styles.footer}>
         <div>
-          <span className={styles.footerBrand}>FIZALION</span>
+          <span className={styles.footerBrand}>Fizalion</span>
         </div>
         <div className={styles.footerLinks}>
           <a

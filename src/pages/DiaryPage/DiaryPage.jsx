@@ -5,6 +5,10 @@ import CalorieCircle from "../../components/CalorieCircle/CalorieCircle";
 import FoodInput from "../../components/FoodInput/FoodInput";
 import FoodList from "../../components/FoodList/FoodList";
 import {
+  selectCalorieGoal,
+  setCalorieGoal,
+} from "../../redux/calorieGoal/calorieGoalSlice";
+import {
   addFoodEntry,
   removeFoodEntryById,
   selectFoodEntriesByDate,
@@ -27,6 +31,7 @@ const DiaryPage = () => {
   const totalCalories = useSelector((state) =>
     selectTotalCaloriesByDate(state, selectedDate),
   );
+  const calorieGoal = useSelector(selectCalorieGoal);
 
   const handleAddFoodEntry = (entry) => dispatch(addFoodEntry(entry));
   const handleRemoveFoodEntryById = (id) => dispatch(removeFoodEntryById(id));
@@ -34,6 +39,12 @@ const DiaryPage = () => {
     dispatch(updateFoodEntryById(entry));
 
   const handleSelectDate = (date) => navigate(`/day/${date}`);
+
+  const handleCalorieGoalChange = (event) => {
+    const goal = Number(event.target.value);
+    if (event.target.value === "" || goal < 1) return;
+    dispatch(setCalorieGoal(goal));
+  };
 
   return (
     <div className={styles.page}>
@@ -44,24 +55,40 @@ const DiaryPage = () => {
         </div>
 
         <div className={styles.dateControls}>
-          <label className={styles.label} htmlFor="change-date">
-            Изменить дату
-          </label>
-          <input
-            className={styles.dateInput}
-            id="change-date"
-            type="date"
-            value={selectedDate}
-            onChange={(event) => handleSelectDate(event.target.value)}
-          />
+          <div className={styles.controlField}>
+            <label className={styles.label} htmlFor="change-date">
+              Изменить дату
+            </label>
+            <input
+              className={styles.dateInput}
+              id="change-date"
+              type="date"
+              value={selectedDate}
+              onChange={(event) => handleSelectDate(event.target.value)}
+            />
+          </div>
 
           <Button onClick={() => handleSelectDate(getTodayDateKey())}>
             Сегодня
           </Button>
+
+          <div className={styles.controlField}>
+            <label className={styles.label} htmlFor="change-calorie-goal">
+              Цель на день
+            </label>
+            <input
+              className={styles.dateInput}
+              id="change-calorie-goal"
+              value={calorieGoal}
+              onChange={handleCalorieGoalChange}
+              type="number"
+              min="1"
+            />
+          </div>
         </div>
       </div>
 
-      <CalorieCircle totalCalories={totalCalories} />
+      <CalorieCircle totalCalories={totalCalories} calorieGoal={calorieGoal} />
 
       <FoodInput
         addFoodEntry={handleAddFoodEntry}
