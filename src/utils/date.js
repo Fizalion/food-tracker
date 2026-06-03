@@ -32,3 +32,12 @@ export function formatDayTitle(dateKey) {
     year: "numeric",
   }).format(date);
 }
+
+export function formatShortDay(dateKey) {
+  const date = dateKeyToDate(dateKey);
+
+  return new Intl.DateTimeFormat("ru-RU", {
+    day: "numeric",
+    month: "short",
+  }).format(date);
+}

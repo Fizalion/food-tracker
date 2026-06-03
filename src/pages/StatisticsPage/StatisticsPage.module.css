@@ -1,0 +1,99 @@
+.page {
+  display: grid;
+  gap: 24px;
+}
+
+.header {
+  display: grid;
+  gap: 8px;
+}
+
+.title {
+  margin: 0;
+  color: #8bd7df;
+  font-size: 34px;
+  line-height: 1.15;
+  text-shadow: 0 0 12px rgba(139, 215, 223, 0.26);
+}
+
+.period {
+  color: #d49bc4;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.weekSummary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid rgba(91, 172, 184, 0.18);
+  border-radius: 8px;
+  background: rgba(7, 13, 32, 0.58);
+}
+
+.weekSummaryTitle {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: #9eb9c4;
+  font-size: 16px;
+}
+
+.weekSummaryItem {
+  color: #d7e7ec;
+  font-weight: 700;
+}
+
+.weekDays {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 8px;
+}
+
+.weekDay {
+  --week-progress-color: #8bd7df;
+  display: grid;
+  grid-template-columns: minmax(110px, 1fr) auto auto minmax(120px, 1fr) minmax(150px, auto);
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid rgba(91, 172, 184, 0.14);
+  border-radius: 8px;
+  color: #d7e7ec;
+  background: rgba(7, 13, 32, 0.42);
+  font-weight: 700;
+}
+
+.weekDayExceeded {
+  --week-progress-color: #f3a6b9;
+  border-color: rgba(243, 166, 185, 0.28);
+}
+
+.weekDayProgress {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(91, 172, 184, 0.14);
+}
+
+.weekDayProgressFill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--week-progress-color);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--week-progress-color), transparent 70%);
+}
+
+@media (max-width: 720px) {
+  .weekSummary {
+    grid-template-columns: 1fr;
+  }
+
+  .weekDay {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .weekDayProgress {
+    grid-column: 1 / -1;
+  }
+}
