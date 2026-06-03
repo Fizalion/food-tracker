@@ -14,6 +14,7 @@ const StatisticsPage = () => {
   const calorieGoal = useSelector(selectCalorieGoal);
   const selectedDate = getTodayDateKey();
   const weekStats = getWeekStats(entries, calorieGoal, selectedDate);
+  const isWeekEmpty = weekStats.totalCalories === 0;
 
   const getDayStatusText = (day) => {
     if (day.status === "under") return `Осталось ${day.remaining} ккал`;
@@ -43,29 +44,35 @@ const StatisticsPage = () => {
           Дней с превышением: {weekStats.daysExceededGoal}
         </span>
 
-        <div className={styles.weekDays}>
-          {weekStats.days.map((day) => (
-            <div
-              className={
-                day.status === "exceeded"
-                  ? `${styles.weekDay} ${styles.weekDayExceeded}`
-                  : styles.weekDay
-              }
-              key={day.date}
-            >
-              <span>{formatShortDay(day.date)}</span>
-              <span>{day.totalCalories} ккал</span>
-              <span>{day.consumedPercent}%</span>
-              <div className={styles.weekDayProgress}>
-                <span
-                  className={styles.weekDayProgressFill}
-                  style={{ width: `${day.progressPercent}%` }}
-                />
+        {isWeekEmpty ? (
+          <span className={styles.emptyWeek}>
+            За эту неделю пока нет записей
+          </span>
+        ) : (
+          <div className={styles.weekDays}>
+            {weekStats.days.map((day) => (
+              <div
+                className={
+                  day.status === "exceeded"
+                    ? `${styles.weekDay} ${styles.weekDayExceeded}`
+                    : styles.weekDay
+                }
+                key={day.date}
+              >
+                <span>{formatShortDay(day.date)}</span>
+                <span>{day.totalCalories} ккал</span>
+                <span>{day.consumedPercent}%</span>
+                <div className={styles.weekDayProgress}>
+                  <span
+                    className={styles.weekDayProgressFill}
+                    style={{ width: `${day.progressPercent}%` }}
+                  />
+                </div>
+                <span>{getDayStatusText(day)}</span>
               </div>
-              <span>{getDayStatusText(day)}</span>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

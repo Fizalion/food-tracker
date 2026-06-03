@@ -50,6 +50,12 @@
   gap: 8px;
 }
 
+.emptyWeek {
+  grid-column: 1 / -1;
+  color: #9eb9c4;
+  font-weight: 700;
+}
+
 .weekDay {
   --week-progress-color: #8bd7df;
   display: grid;
