@@ -23,6 +23,14 @@ const Layout = ({ children }) => {
           >
             История
           </NavLink>
+          <NavLink
+            to="/statistics"
+            className={({ isActive }) =>
+              isActive ? `${styles.link} ${styles.active}` : styles.link
+            }
+          >
+            Статистика
+          </NavLink>
         </nav>
       </header>
 

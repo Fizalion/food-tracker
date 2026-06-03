@@ -2,7 +2,7 @@ function pad2(n) {
   return n < 10 ? "0" + String(n) : String(n);
 }
 
-function toDateKey(date) {
+export function toDateKey(date) {
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   const day = date.getDate();
@@ -14,7 +14,7 @@ export function getTodayDateKey() {
   return toDateKey(date);
 }
 
-function dateKeyToDate(dateKey) {
+export function dateKeyToDate(dateKey) {
   const splitDate = dateKey.split("-");
   const year = Number(splitDate[0]);
   const month = Number(splitDate[1]) - 1;
@@ -30,5 +30,14 @@ export function formatDayTitle(dateKey) {
     day: "numeric",
     month: "long",
     year: "numeric",
+  }).format(date);
+}
+
+export function formatShortDay(dateKey) {
+  const date = dateKeyToDate(dateKey);
+
+  return new Intl.DateTimeFormat("ru-RU", {
+    day: "numeric",
+    month: "short",
   }).format(date);
 }

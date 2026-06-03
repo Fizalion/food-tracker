@@ -4,6 +4,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import DiaryPage from "./pages/DiaryPage/DiaryPage";
 import HistoryPage from "./pages/HistoryPage/HistoryPage";
+import StatisticsPage from "./pages/StatisticsPage/StatisticsPage";
 import { selectCalorieGoal } from "./redux/calorieGoal/calorieGoalSlice";
 import { selectFoodEntries } from "./redux/foodEntries/foodEntriesSlice";
 import { saveCalorieGoal, saveFoodEntries } from "./utils/storage";
@@ -20,6 +21,7 @@ function App() {
         <Route path="/" element={<DiaryPage />} />
         <Route path="/day/:date" element={<DiaryPage />} />
         <Route path="/history" element={<HistoryPage />} />
+        <Route path="/statistics" element={<StatisticsPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Layout>
