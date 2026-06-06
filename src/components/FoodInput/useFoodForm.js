@@ -5,12 +5,23 @@ export const useFoodForm = (addFoodEntry, selectedDate, onSuccess) => {
   const [food, setFood] = useState("");
   const [grams, setGrams] = useState("");
   const [caloriesPer100g, setCaloriesPer100g] = useState("");
+  const [isProductSelected, setIsProductSelected] = useState(false);
   const [error, setError] = useState("");
 
-  const handleFoodChange = (event) => setFood(event.target.value);
+  const handleFoodChange = (event) => {
+    setFood(event.target.value);
+    setIsProductSelected(false);
+  };
   const handleGramsChange = (event) => setGrams(event.target.value);
   const handleCaloriesPer100gChange = (event) =>
     setCaloriesPer100g(event.target.value);
+
+  const handleSelectProduct = (selectedProduct) => {
+    setFood(selectedProduct.title);
+    setCaloriesPer100g(String(selectedProduct.caloriesPer100g));
+    setIsProductSelected(true);
+    setError("");
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -52,6 +63,7 @@ export const useFoodForm = (addFoodEntry, selectedDate, onSuccess) => {
     setFood("");
     setGrams("");
     setCaloriesPer100g("");
+    setIsProductSelected(false);
     setError("");
     onSuccess?.();
   };
@@ -65,5 +77,7 @@ export const useFoodForm = (addFoodEntry, selectedDate, onSuccess) => {
     caloriesPer100g,
     handleCaloriesPer100gChange,
     error,
+    isProductSelected,
+    handleSelectProduct,
   };
 };
