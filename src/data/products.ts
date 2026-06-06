@@ -1,0 +1,78 @@
+import type { Product } from "../types/product";
+
+export const products: Product[] = [
+  { id: "latte", title: "Латте без сахара", caloriesPer100g: 60 },
+  { id: "cappuccino", title: "Капучино без сахара", caloriesPer100g: 40 },
+  { id: "black-bread", title: "Чёрный хлеб", caloriesPer100g: 210 },
+  { id: "white-bread", title: "Батон", caloriesPer100g: 265 },
+  { id: "buckwheat", title: "Гречка готовая", caloriesPer100g: 110 },
+  { id: "pearl-barley", title: "Перловая каша", caloriesPer100g: 87 },
+  { id: "oatmeal", title: "Овсяная каша", caloriesPer100g: 73 },
+  { id: "wheat-porridge", title: "Пшеничная каша", caloriesPer100g: 109 },
+  { id: "rice", title: "Рис готовый", caloriesPer100g: 128 },
+  { id: "bulgur", title: "Булгур готовый", caloriesPer100g: 83 },
+  { id: "mashed-potatoes", title: "Картофельное пюре", caloriesPer100g: 87 },
+  { id: "baked-potatoes", title: "Картофель запечённый", caloriesPer100g: 100 },
+  { id: "pasta", title: "Макароны готовые", caloriesPer100g: 150 },
+
+  { id: "chicken-breast", title: "Куриная грудка", caloriesPer100g: 165 },
+  { id: "chicken-cutlet", title: "Куриная котлета", caloriesPer100g: 240 },
+  { id: "lean-beef", title: "Говядина постная", caloriesPer100g: 200 },
+  { id: "pork-shashlik", title: "Шашлык свиной", caloriesPer100g: 275 },
+  { id: "egg-boiled", title: "Яйцо варёное", caloriesPer100g: 155 },
+  { id: "white-fish", title: "Белая рыба", caloriesPer100g: 105 },
+  {
+    id: "canned-tuna",
+    title: "Тунец консервированный в собственном соку",
+    caloriesPer100g: 120,
+  },
+  { id: "cottage-cheese-5", title: "Творог 5%", caloriesPer100g: 120 },
+  { id: "processed-cheese", title: "Плавленый сыр", caloriesPer100g: 300 },
+
+  { id: "borscht", title: "Борщ", caloriesPer100g: 60 },
+  { id: "chicken-soup", title: "Суп с куриным мясом", caloriesPer100g: 60 },
+  { id: "fish-soup", title: "Рыбный суп", caloriesPer100g: 50 },
+
+  { id: "cabbage", title: "Капуста", caloriesPer100g: 25 },
+  { id: "cucumber", title: "Огурец", caloriesPer100g: 15 },
+  { id: "salted-cucumber", title: "Огурец солёный", caloriesPer100g: 17 },
+  { id: "tomato", title: "Помидор", caloriesPer100g: 20 },
+  { id: "radish", title: "Редис", caloriesPer100g: 16 },
+  { id: "canned-peas", title: "Горох консервированный", caloriesPer100g: 75 },
+  {
+    id: "canned-corn",
+    title: "Кукуруза консервированная",
+    caloriesPer100g: 95,
+  },
+  { id: "olives", title: "Маслины", caloriesPer100g: 150 },
+  { id: "sour-cream-20", title: "Сметана 20%", caloriesPer100g: 206 },
+  { id: "ketchup", title: "Кетчуп", caloriesPer100g: 100 },
+  { id: "adjika", title: "Аджика", caloriesPer100g: 60 },
+
+  { id: "banana", title: "Банан", caloriesPer100g: 89 },
+  { id: "apple", title: "Яблоко", caloriesPer100g: 52 },
+
+  {
+    id: "cottage-cheese-bun",
+    title: "Булочка с творогом",
+    caloriesPer100g: 300,
+  },
+  { id: "jam-bun", title: "Булочка с повидлом", caloriesPer100g: 300 },
+  { id: "cabbage-pie", title: "Пирог с капустой", caloriesPer100g: 220 },
+  { id: "poppy-roll", title: "Рулет с маком", caloriesPer100g: 360 },
+  {
+    id: "condensed-milk-roll",
+    title: "Трубочка со сгущёнкой",
+    caloriesPer100g: 375,
+  },
+  { id: "oat-cookie", title: "Овсяное печенье", caloriesPer100g: 450 },
+  { id: "oreo", title: "Oreo", caloriesPer100g: 480 },
+  { id: "cracker", title: "Крекер солёный", caloriesPer100g: 450 },
+
+  { id: "ice-cream", title: "Мороженое молочное", caloriesPer100g: 210 },
+  { id: "cake-cream", title: "Торт с кремом", caloriesPer100g: 375 },
+  { id: "snickers", title: "Snickers", caloriesPer100g: 486 },
+  { id: "sprite", title: "Sprite обычный", caloriesPer100g: 40 },
+  { id: "top-drink", title: "Молочный напиток TOP", caloriesPer100g: 60 },
+  { id: "drinking-yogurt", title: "Питьевой йогурт", caloriesPer100g: 70 },
+];
