@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { products } from "../../data/products";
 import Button from "../Button/Button";
 import styles from "./FoodInput.module.css";
 import { useFoodForm } from "./useFoodForm";
@@ -16,11 +17,28 @@ const FoodInput = ({ addFoodEntry, selectedDate }) => {
     caloriesPer100g,
     handleCaloriesPer100gChange,
     error,
+    handleSelectProduct,
+    isProductSelected,
   } = useFoodForm(addFoodEntry, selectedDate, focusOnFoodInput);
+
+  const searchValue = food.trim().toLowerCase();
+  const suggestedProducts = searchValue
+    ? products
+        .filter((product) => {
+          const isProductMatched = product.title
+            .toLowerCase()
+            .includes(searchValue);
+          return isProductMatched;
+        })
+        .slice(0, 5)
+    : [];
+
+  const shouldShowSuggestions =
+    suggestedProducts.length > 0 && !isProductSelected;
 
   return (
     <form className={styles.form} onSubmit={handleSubmit} noValidate>
-      <div className={styles.field}>
+      <div className={`${styles.field} ${styles.productField}`}>
         <label className={styles.label} htmlFor="food-title">
           Название еды
         </label>
@@ -31,6 +49,20 @@ const FoodInput = ({ addFoodEntry, selectedDate }) => {
           value={food}
           onChange={handleFoodChange}
         />
+
+        {shouldShowSuggestions && (
+          <ul className={styles.suggestions}>
+            {suggestedProducts.map((product) => (
+              <li
+                className={styles.suggestion}
+                key={product.id}
+                onClick={() => handleSelectProduct(product)}
+              >
+                {product.title}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
 
       <div className={styles.field}>
