@@ -1,5 +1,7 @@
 import { useRef } from "react";
 import { products } from "../../data/products";
+import { findProductsByTitle } from "../../utils/products";
+import { parseQuickEntry } from "../../utils/quickEntry";
 import Button from "../Button/Button";
 import styles from "./FoodInput.module.css";
 import { useFoodForm } from "./useFoodForm";
@@ -21,18 +23,9 @@ const FoodInput = ({ addFoodEntry, selectedDate }) => {
     isProductSelected,
   } = useFoodForm(addFoodEntry, selectedDate, focusOnFoodInput);
 
-  const searchValue = food.trim().toLowerCase();
-  const suggestedProducts = searchValue
-    ? products
-        .filter((product) => {
-          const isProductMatched = product.title
-            .toLowerCase()
-            .includes(searchValue);
-          return isProductMatched;
-        })
-        .slice(0, 5)
-    : [];
-
+  const quickEntry = parseQuickEntry(food);
+  const searchValue = quickEntry.titleText;
+  const suggestedProducts = findProductsByTitle(products, searchValue);
   const shouldShowSuggestions =
     suggestedProducts.length > 0 && !isProductSelected;
 
