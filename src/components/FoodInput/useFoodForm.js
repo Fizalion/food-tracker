@@ -1,5 +1,8 @@
 import { useState } from "react";
+import { products } from "../../data/products";
 import { calculateCalories } from "../../utils/foodEntries";
+import { findProductsByTitle } from "../../utils/products";
+import { parseQuickEntry } from "../../utils/quickEntry";
 
 export const useFoodForm = (addFoodEntry, selectedDate, onSuccess) => {
   const [food, setFood] = useState("");
@@ -9,9 +12,20 @@ export const useFoodForm = (addFoodEntry, selectedDate, onSuccess) => {
   const [error, setError] = useState("");
 
   const handleFoodChange = (event) => {
-    setFood(event.target.value);
+    const foodValue = event.target.value;
+    const { titleText: quickTitle, grams: quickGrams } =
+      parseQuickEntry(foodValue);
+    const matchedProducts = quickTitle
+      ? findProductsByTitle(products, quickTitle)
+      : [];
+
+    setFood(foodValue);
+    if (quickGrams !== null) setGrams(String(quickGrams));
     setIsProductSelected(false);
+    if (matchedProducts.length === 1)
+      setCaloriesPer100g(String(matchedProducts[0].caloriesPer100g));
   };
+
   const handleGramsChange = (event) => setGrams(event.target.value);
   const handleCaloriesPer100gChange = (event) =>
     setCaloriesPer100g(event.target.value);
@@ -26,7 +40,8 @@ export const useFoodForm = (addFoodEntry, selectedDate, onSuccess) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const trimmedFood = food.trim();
+    const quickEntry = parseQuickEntry(food);
+    const trimmedFood = quickEntry.titleText.trim();
     const gramsAmount = Number(grams);
     const caloriesPer100gAmount = Number(caloriesPer100g);
 
