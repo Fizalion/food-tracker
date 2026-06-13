@@ -3,6 +3,7 @@ import {
   getAvailableDates,
   getEntriesByDate,
   getTotalCalories,
+  getTotalMacros,
 } from "../../utils/foodEntries";
 import { loadFoodEntries } from "../../utils/storage";
 
@@ -25,6 +26,9 @@ export const foodEntriesSlice = createSlice({
         entry.grams = action.payload.grams;
         entry.calories = action.payload.calories;
         entry.caloriesPer100g = action.payload.caloriesPer100g;
+        entry.proteins = action.payload.proteins;
+        entry.fats = action.payload.fats;
+        entry.carbs = action.payload.carbs;
       }
     },
   },
@@ -50,4 +54,9 @@ export const selectFoodEntriesByDate = createSelector(
 export const selectTotalCaloriesByDate = createSelector(
   [selectFoodEntriesByDate],
   (entriesByDate) => getTotalCalories(entriesByDate),
+);
+
+export const selectTotalMacrosByDate = createSelector(
+  [selectFoodEntriesByDate],
+  (entriesByDate) => getTotalMacros(entriesByDate),
 );

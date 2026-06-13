@@ -30,6 +30,12 @@
   font-weight: 700;
 }
 
+.macros {
+  color: #8bd7df;
+  font-size: 13px;
+  font-weight: 700;
+}
+
 .actions {
   display: flex;
   align-items: center;

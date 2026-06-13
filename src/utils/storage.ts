@@ -10,7 +10,20 @@ export const loadFoodEntries = (): FoodEntry[] => {
   if (!initialEntries) return [];
 
   try {
-    return JSON.parse(initialEntries);
+    const parsedEntries = JSON.parse(initialEntries);
+    const entries = Array.isArray(parsedEntries) ? parsedEntries : [];
+    const normalizedEntries = entries.map((entry) => {
+      return {
+        ...entry,
+        proteins: entry.proteins ?? 0,
+        fats: entry.fats ?? 0,
+        carbs: entry.carbs ?? 0,
+        proteinsPer100g: entry.proteinsPer100g ?? 0,
+        fatsPer100g: entry.fatsPer100g ?? 0,
+        carbsPer100g: entry.carbsPer100g ?? 0,
+      };
+    });
+    return normalizedEntries;
   } catch {
     return [];
   }

@@ -57,6 +57,17 @@
   outline: 2px solid rgba(139, 215, 223, 0.18);
 }
 
+.macrosSummary {
+  justify-self: start;
+  padding: 10px 12px;
+  border: 1px solid rgba(91, 172, 184, 0.22);
+  border-radius: 8px;
+  color: #d7e7ec;
+  background: rgba(7, 13, 32, 0.72);
+  font-size: 14px;
+  font-weight: 800;
+}
+
 @media (max-width: 720px) {
   .header {
     flex-direction: column;
@@ -70,5 +81,9 @@
   .controlField,
   .dateInput {
     flex: 1;
+  }
+
+  .macrosSummary {
+    justify-self: stretch;
   }
 }

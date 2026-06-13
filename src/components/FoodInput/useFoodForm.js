@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { products } from "../../data/products";
-import { calculateCalories } from "../../utils/foodEntries";
+import { calculateCalories, calculateMacros } from "../../utils/foodEntries";
 import { findProductsByTitle } from "../../utils/products";
 import { parseQuickEntry } from "../../utils/quickEntry";
 
@@ -8,6 +8,9 @@ export const useFoodForm = (addFoodEntry, selectedDate, onSuccess) => {
   const [food, setFood] = useState("");
   const [grams, setGrams] = useState("");
   const [caloriesPer100g, setCaloriesPer100g] = useState("");
+  const [proteinsPer100g, setProteinsPer100g] = useState("");
+  const [fatsPer100g, setFatsPer100g] = useState("");
+  const [carbsPer100g, setCarbsPer100g] = useState("");
   const [isProductSelected, setIsProductSelected] = useState(false);
   const [error, setError] = useState("");
 
@@ -22,8 +25,14 @@ export const useFoodForm = (addFoodEntry, selectedDate, onSuccess) => {
     setFood(foodValue);
     if (quickGrams !== null) setGrams(String(quickGrams));
     setIsProductSelected(false);
-    if (matchedProducts.length === 1)
-      setCaloriesPer100g(String(matchedProducts[0].caloriesPer100g));
+
+    if (matchedProducts.length === 1) {
+      const matchedProduct = matchedProducts[0];
+      setCaloriesPer100g(String(matchedProduct.caloriesPer100g));
+      setProteinsPer100g(String(matchedProduct.proteinsPer100g));
+      setFatsPer100g(String(matchedProduct.fatsPer100g));
+      setCarbsPer100g(String(matchedProduct.carbsPer100g));
+    }
   };
 
   const handleGramsChange = (event) => setGrams(event.target.value);
@@ -33,6 +42,9 @@ export const useFoodForm = (addFoodEntry, selectedDate, onSuccess) => {
   const handleSelectProduct = (selectedProduct) => {
     setFood(selectedProduct.title);
     setCaloriesPer100g(String(selectedProduct.caloriesPer100g));
+    setProteinsPer100g(String(selectedProduct.proteinsPer100g));
+    setFatsPer100g(String(selectedProduct.fatsPer100g));
+    setCarbsPer100g(String(selectedProduct.carbsPer100g));
     setIsProductSelected(true);
     setError("");
   };
@@ -44,6 +56,9 @@ export const useFoodForm = (addFoodEntry, selectedDate, onSuccess) => {
     const trimmedFood = quickEntry.titleText.trim();
     const gramsAmount = Number(grams);
     const caloriesPer100gAmount = Number(caloriesPer100g);
+    const proteinsPer100gAmount = Number(proteinsPer100g);
+    const fatsPer100gAmount = Number(fatsPer100g);
+    const carbsPer100gAmount = Number(carbsPer100g);
 
     if (!trimmedFood) {
       setError("Введите название еды");
@@ -64,12 +79,25 @@ export const useFoodForm = (addFoodEntry, selectedDate, onSuccess) => {
       return;
     }
 
+    const macros = calculateMacros(
+      gramsAmount,
+      proteinsPer100gAmount,
+      fatsPer100gAmount,
+      carbsPer100gAmount,
+    );
+
     const entry = {
       id: Date.now(),
       title: trimmedFood,
       grams: gramsAmount,
-      caloriesPer100g: caloriesPer100gAmount,
       calories: calculateCalories(gramsAmount, caloriesPer100gAmount),
+      proteins: macros.proteins,
+      fats: macros.fats,
+      carbs: macros.carbs,
+      caloriesPer100g: caloriesPer100gAmount,
+      proteinsPer100g: proteinsPer100gAmount,
+      fatsPer100g: fatsPer100gAmount,
+      carbsPer100g: carbsPer100gAmount,
       date: selectedDate,
       createdAt: new Date().toISOString(),
     };
@@ -78,6 +106,9 @@ export const useFoodForm = (addFoodEntry, selectedDate, onSuccess) => {
     setFood("");
     setGrams("");
     setCaloriesPer100g("");
+    setProteinsPer100g("");
+    setFatsPer100g("");
+    setCarbsPer100g("");
     setIsProductSelected(false);
     setError("");
     onSuccess?.();
