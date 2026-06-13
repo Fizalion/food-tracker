@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { calculateCalories } from "../../utils/foodEntries";
+import { calculateCalories, calculateMacros } from "../../utils/foodEntries";
 
 export const useFoodEntryEdit = (entry, updateFoodEntryById) => {
   const { id, title, grams, caloriesPer100g } = entry;
@@ -51,12 +51,22 @@ export const useFoodEntryEdit = (entry, updateFoodEntryById) => {
       return;
     }
 
+    const macros = calculateMacros(
+      gramsAmount,
+      entry.proteinsPer100g,
+      entry.fatsPer100g,
+      entry.carbsPer100g,
+    );
+
     updateFoodEntryById({
       id,
       title: trimmedTitle,
       grams: gramsAmount,
       caloriesPer100g: caloriesPer100gAmount,
       calories: calculateCalories(gramsAmount, caloriesPer100gAmount),
+      proteins: macros.proteins,
+      fats: macros.fats,
+      carbs: macros.carbs,
     });
 
     setEditError("");

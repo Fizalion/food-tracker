@@ -13,6 +13,7 @@ import {
   removeFoodEntryById,
   selectFoodEntriesByDate,
   selectTotalCaloriesByDate,
+  selectTotalMacrosByDate,
   updateFoodEntryById,
 } from "../../redux/foodEntries/foodEntriesSlice";
 import { formatDayTitle, getTodayDateKey } from "../../utils/date";
@@ -30,6 +31,9 @@ const DiaryPage = () => {
   );
   const totalCalories = useSelector((state) =>
     selectTotalCaloriesByDate(state, selectedDate),
+  );
+  const totalMacros = useSelector((state) =>
+    selectTotalMacrosByDate(state, selectedDate),
   );
   const calorieGoal = useSelector(selectCalorieGoal);
 
@@ -89,6 +93,11 @@ const DiaryPage = () => {
       </div>
 
       <CalorieCircle totalCalories={totalCalories} calorieGoal={calorieGoal} />
+
+      <span className={styles.macrosSummary}>
+        Б {totalMacros.proteins} г · Ж {totalMacros.fats} г · У{" "}
+        {totalMacros.carbs} г
+      </span>
 
       <FoodInput
         addFoodEntry={handleAddFoodEntry}

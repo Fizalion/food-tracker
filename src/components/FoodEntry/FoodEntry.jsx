@@ -4,7 +4,7 @@ import styles from "./FoodEntry.module.css";
 import { useFoodEntryEdit } from "./useFoodEntryEdit";
 
 const FoodEntry = ({ entry, removeFoodEntryById, updateFoodEntryById }) => {
-  const { id, title, calories, grams } = entry;
+  const { id, title, calories, grams, proteins, fats, carbs } = entry;
 
   const {
     isEditing,
@@ -73,6 +73,9 @@ const FoodEntry = ({ entry, removeFoodEntryById, updateFoodEntryById }) => {
             <span className={styles.title}>{title}</span>
             <span className={styles.weight}>{grams} г</span>
             <span className={styles.calories}>{calories} ккал</span>
+            <span className={styles.macros}>
+              Б {proteins} г · Ж {fats} г · У {carbs} г
+            </span>
           </div>
 
           {isConfirmingDelete === false && (
