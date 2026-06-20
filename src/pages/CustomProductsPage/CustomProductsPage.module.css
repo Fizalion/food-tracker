@@ -1,0 +1,19 @@
+.page {
+  display: grid;
+  gap: 24px;
+}
+
+.title {
+  margin: 0;
+  color: #8bd7df;
+  font-size: 34px;
+  line-height: 1.15;
+  text-shadow: 0 0 12px rgba(139, 215, 223, 0.26);
+}
+
+.count {
+  justify-self: start;
+  color: #9eb9c4;
+  font-size: 14px;
+  font-weight: 700;
+}

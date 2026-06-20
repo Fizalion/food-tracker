@@ -1,12 +1,17 @@
 import { useRef } from "react";
+import { useSelector } from "react-redux";
 import { products } from "../../data/products";
-import { findProductsByTitle } from "../../utils/products";
+import { selectCustomProducts } from "../../redux/customProducts/customProductsSlice";
+import { findProductsByTitle, getAllProducts } from "../../utils/products";
 import { parseQuickEntry } from "../../utils/quickEntry";
 import Button from "../Button/Button";
 import styles from "./FoodInput.module.css";
 import { useFoodForm } from "./useFoodForm";
 
 const FoodInput = ({ addFoodEntry, selectedDate }) => {
+  const customProducts = useSelector(selectCustomProducts);
+  const allProducts = getAllProducts(products, customProducts);
+
   const foodInputRef = useRef(null);
   const focusOnFoodInput = () => foodInputRef.current?.focus();
 
@@ -21,11 +26,11 @@ const FoodInput = ({ addFoodEntry, selectedDate }) => {
     error,
     handleSelectProduct,
     isProductSelected,
-  } = useFoodForm(addFoodEntry, selectedDate, focusOnFoodInput);
+  } = useFoodForm(allProducts, addFoodEntry, selectedDate, focusOnFoodInput);
 
   const quickEntry = parseQuickEntry(food);
   const searchValue = quickEntry.titleText;
-  const suggestedProducts = findProductsByTitle(products, searchValue);
+  const suggestedProducts = findProductsByTitle(allProducts, searchValue);
   const shouldShowSuggestions =
     suggestedProducts.length > 0 && !isProductSelected;
 

@@ -1,5 +1,12 @@
 import type { Product } from "../types/product";
 
+export const getAllProducts = (
+  builtInProducts: Product[],
+  customProducts: Product[],
+): Product[] => {
+  return [...builtInProducts, ...customProducts];
+};
+
 export const findProductsByTitle = (
   products: Product[],
   searchText: string,

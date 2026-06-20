@@ -1,9 +1,11 @@
 import {
   CALORIE_GOAL_STORAGE_KEY,
+  CUSTOM_PRODUCTS_STORAGE_KEY,
   DEFAULT_CALORIE_GOAL,
   FOOD_ENTRIES_STORAGE_KEY,
 } from "../constants";
 import type { FoodEntry } from "../types/foodEntry";
+import type { Product } from "../types/product";
 
 export const loadFoodEntries = (): FoodEntry[] => {
   const initialEntries = localStorage.getItem(FOOD_ENTRIES_STORAGE_KEY);
@@ -32,6 +34,25 @@ export const loadFoodEntries = (): FoodEntry[] => {
 export const saveFoodEntries = (entries: FoodEntry[]): void => {
   try {
     localStorage.setItem(FOOD_ENTRIES_STORAGE_KEY, JSON.stringify(entries));
+  } catch {}
+};
+
+export const loadCustomProducts = (): Product[] => {
+  const customProducts = localStorage.getItem(CUSTOM_PRODUCTS_STORAGE_KEY);
+  if (!customProducts) return [];
+
+  try {
+    const parsedProducts = JSON.parse(customProducts);
+    const productsArr = Array.isArray(parsedProducts) ? parsedProducts : [];
+    return productsArr;
+  } catch {
+    return [];
+  }
+};
+
+export const saveCustomProducts = (products: Product[]): void => {
+  try {
+    localStorage.setItem(CUSTOM_PRODUCTS_STORAGE_KEY, JSON.stringify(products));
   } catch {}
 };
 

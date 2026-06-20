@@ -1,7 +1,8 @@
-import type { Product } from "../types/product";
+﻿import type { Product } from "../types/product";
 
 export const products: Product[] = [
   {
+    source: "built-in",
     id: "latte",
     title: "Латте без сахара",
     caloriesPer100g: 60,
@@ -10,6 +11,7 @@ export const products: Product[] = [
     carbsPer100g: 4.8,
   },
   {
+    source: "built-in",
     id: "cappuccino",
     title: "Капучино без сахара",
     caloriesPer100g: 40,
@@ -18,6 +20,7 @@ export const products: Product[] = [
     carbsPer100g: 3.5,
   },
   {
+    source: "built-in",
     id: "black-bread",
     title: "Чёрный хлеб",
     caloriesPer100g: 210,
@@ -26,6 +29,7 @@ export const products: Product[] = [
     carbsPer100g: 40.7,
   },
   {
+    source: "built-in",
     id: "white-bread",
     title: "Батон",
     caloriesPer100g: 265,
@@ -34,6 +38,7 @@ export const products: Product[] = [
     carbsPer100g: 50.9,
   },
   {
+    source: "built-in",
     id: "buckwheat",
     title: "Гречка готовая",
     caloriesPer100g: 110,
@@ -42,6 +47,7 @@ export const products: Product[] = [
     carbsPer100g: 20,
   },
   {
+    source: "built-in",
     id: "pearl-barley",
     title: "Перловая каша",
     caloriesPer100g: 87,
@@ -50,6 +56,7 @@ export const products: Product[] = [
     carbsPer100g: 19.4,
   },
   {
+    source: "built-in",
     id: "oatmeal",
     title: "Овсяная каша",
     caloriesPer100g: 73,
@@ -58,6 +65,7 @@ export const products: Product[] = [
     carbsPer100g: 12,
   },
   {
+    source: "built-in",
     id: "wheat-porridge",
     title: "Пшеничная каша",
     caloriesPer100g: 109,
@@ -66,6 +74,7 @@ export const products: Product[] = [
     carbsPer100g: 22.8,
   },
   {
+    source: "built-in",
     id: "rice",
     title: "Рис готовый",
     caloriesPer100g: 128,
@@ -74,6 +83,7 @@ export const products: Product[] = [
     carbsPer100g: 28.2,
   },
   {
+    source: "built-in",
     id: "bulgur",
     title: "Булгур готовый",
     caloriesPer100g: 83,
@@ -82,6 +92,7 @@ export const products: Product[] = [
     carbsPer100g: 18.6,
   },
   {
+    source: "built-in",
     id: "mashed-potatoes",
     title: "Картофельное пюре",
     caloriesPer100g: 87,
@@ -90,6 +101,7 @@ export const products: Product[] = [
     carbsPer100g: 13.7,
   },
   {
+    source: "built-in",
     id: "baked-potatoes",
     title: "Картофель запечённый",
     caloriesPer100g: 100,
@@ -98,6 +110,7 @@ export const products: Product[] = [
     carbsPer100g: 21.1,
   },
   {
+    source: "built-in",
     id: "pasta",
     title: "Макароны готовые",
     caloriesPer100g: 150,
@@ -107,6 +120,7 @@ export const products: Product[] = [
   },
 
   {
+    source: "built-in",
     id: "chicken-breast",
     title: "Куриная грудка",
     caloriesPer100g: 165,
@@ -115,6 +129,7 @@ export const products: Product[] = [
     carbsPer100g: 0,
   },
   {
+    source: "built-in",
     id: "chicken-cutlet",
     title: "Куриная котлета",
     caloriesPer100g: 240,
@@ -123,6 +138,7 @@ export const products: Product[] = [
     carbsPer100g: 15,
   },
   {
+    source: "built-in",
     id: "lean-beef",
     title: "Говядина постная",
     caloriesPer100g: 200,
@@ -131,6 +147,7 @@ export const products: Product[] = [
     carbsPer100g: 0,
   },
   {
+    source: "built-in",
     id: "pork-shashlik",
     title: "Шашлык свиной",
     caloriesPer100g: 275,
@@ -139,6 +156,7 @@ export const products: Product[] = [
     carbsPer100g: 0,
   },
   {
+    source: "built-in",
     id: "egg-boiled",
     title: "Яйцо варёное",
     caloriesPer100g: 155,
@@ -147,6 +165,7 @@ export const products: Product[] = [
     carbsPer100g: 1.1,
   },
   {
+    source: "built-in",
     id: "white-fish",
     title: "Белая рыба",
     caloriesPer100g: 105,
@@ -155,6 +174,7 @@ export const products: Product[] = [
     carbsPer100g: 0,
   },
   {
+    source: "built-in",
     id: "canned-tuna",
     title: "Тунец консервированный в собственном соку",
     caloriesPer100g: 120,
@@ -163,6 +183,7 @@ export const products: Product[] = [
     carbsPer100g: 0,
   },
   {
+    source: "built-in",
     id: "cottage-cheese-5",
     title: "Творог 5%",
     caloriesPer100g: 120,
@@ -171,6 +192,7 @@ export const products: Product[] = [
     carbsPer100g: 3,
   },
   {
+    source: "built-in",
     id: "processed-cheese",
     title: "Плавленый сыр",
     caloriesPer100g: 300,
@@ -180,6 +202,7 @@ export const products: Product[] = [
   },
 
   {
+    source: "built-in",
     id: "borscht",
     title: "Борщ",
     caloriesPer100g: 60,
@@ -188,6 +211,7 @@ export const products: Product[] = [
     carbsPer100g: 6,
   },
   {
+    source: "built-in",
     id: "chicken-soup",
     title: "Суп с куриным мясом",
     caloriesPer100g: 60,
@@ -196,6 +220,7 @@ export const products: Product[] = [
     carbsPer100g: 5,
   },
   {
+    source: "built-in",
     id: "fish-soup",
     title: "Рыбный суп",
     caloriesPer100g: 50,
@@ -205,6 +230,7 @@ export const products: Product[] = [
   },
 
   {
+    source: "built-in",
     id: "cabbage",
     title: "Капуста",
     caloriesPer100g: 25,
@@ -213,6 +239,7 @@ export const products: Product[] = [
     carbsPer100g: 5.8,
   },
   {
+    source: "built-in",
     id: "cucumber",
     title: "Огурец",
     caloriesPer100g: 15,
@@ -221,6 +248,7 @@ export const products: Product[] = [
     carbsPer100g: 3.6,
   },
   {
+    source: "built-in",
     id: "salted-cucumber",
     title: "Огурец солёный",
     caloriesPer100g: 17,
@@ -229,6 +257,7 @@ export const products: Product[] = [
     carbsPer100g: 2.3,
   },
   {
+    source: "built-in",
     id: "tomato",
     title: "Помидор",
     caloriesPer100g: 20,
@@ -237,6 +266,7 @@ export const products: Product[] = [
     carbsPer100g: 3.9,
   },
   {
+    source: "built-in",
     id: "radish",
     title: "Редис",
     caloriesPer100g: 16,
@@ -245,6 +275,7 @@ export const products: Product[] = [
     carbsPer100g: 3.4,
   },
   {
+    source: "built-in",
     id: "canned-peas",
     title: "Горох консервированный",
     caloriesPer100g: 75,
@@ -253,6 +284,7 @@ export const products: Product[] = [
     carbsPer100g: 11.5,
   },
   {
+    source: "built-in",
     id: "canned-corn",
     title: "Кукуруза консервированная",
     caloriesPer100g: 95,
@@ -261,6 +293,7 @@ export const products: Product[] = [
     carbsPer100g: 16,
   },
   {
+    source: "built-in",
     id: "olives",
     title: "Маслины",
     caloriesPer100g: 150,
@@ -269,6 +302,7 @@ export const products: Product[] = [
     carbsPer100g: 3.8,
   },
   {
+    source: "built-in",
     id: "sour-cream-20",
     title: "Сметана 20%",
     caloriesPer100g: 206,
@@ -277,6 +311,7 @@ export const products: Product[] = [
     carbsPer100g: 3.2,
   },
   {
+    source: "built-in",
     id: "ketchup",
     title: "Кетчуп",
     caloriesPer100g: 100,
@@ -285,6 +320,7 @@ export const products: Product[] = [
     carbsPer100g: 23,
   },
   {
+    source: "built-in",
     id: "adjika",
     title: "Аджика",
     caloriesPer100g: 60,
@@ -294,6 +330,7 @@ export const products: Product[] = [
   },
 
   {
+    source: "built-in",
     id: "banana",
     title: "Банан",
     caloriesPer100g: 89,
@@ -302,6 +339,7 @@ export const products: Product[] = [
     carbsPer100g: 22.8,
   },
   {
+    source: "built-in",
     id: "apple",
     title: "Яблоко",
     caloriesPer100g: 52,
@@ -311,6 +349,7 @@ export const products: Product[] = [
   },
 
   {
+    source: "built-in",
     id: "cottage-cheese-bun",
     title: "Булочка с творогом",
     caloriesPer100g: 300,
@@ -319,6 +358,7 @@ export const products: Product[] = [
     carbsPer100g: 45,
   },
   {
+    source: "built-in",
     id: "jam-bun",
     title: "Булочка с повидлом",
     caloriesPer100g: 300,
@@ -327,6 +367,7 @@ export const products: Product[] = [
     carbsPer100g: 50,
   },
   {
+    source: "built-in",
     id: "cabbage-pie",
     title: "Пирог с капустой",
     caloriesPer100g: 220,
@@ -335,6 +376,7 @@ export const products: Product[] = [
     carbsPer100g: 30,
   },
   {
+    source: "built-in",
     id: "poppy-roll",
     title: "Рулет с маком",
     caloriesPer100g: 360,
@@ -343,6 +385,7 @@ export const products: Product[] = [
     carbsPer100g: 55,
   },
   {
+    source: "built-in",
     id: "condensed-milk-roll",
     title: "Трубочка со сгущёнкой",
     caloriesPer100g: 375,
@@ -351,6 +394,7 @@ export const products: Product[] = [
     carbsPer100g: 50,
   },
   {
+    source: "built-in",
     id: "oat-cookie",
     title: "Овсяное печенье",
     caloriesPer100g: 450,
@@ -359,6 +403,7 @@ export const products: Product[] = [
     carbsPer100g: 68,
   },
   {
+    source: "built-in",
     id: "oreo",
     title: "Oreo",
     caloriesPer100g: 480,
@@ -367,6 +412,7 @@ export const products: Product[] = [
     carbsPer100g: 68,
   },
   {
+    source: "built-in",
     id: "cracker",
     title: "Крекер солёный",
     caloriesPer100g: 450,
@@ -376,6 +422,7 @@ export const products: Product[] = [
   },
 
   {
+    source: "built-in",
     id: "ice-cream",
     title: "Мороженое молочное",
     caloriesPer100g: 210,
@@ -384,6 +431,7 @@ export const products: Product[] = [
     carbsPer100g: 24,
   },
   {
+    source: "built-in",
     id: "cake-cream",
     title: "Торт с кремом",
     caloriesPer100g: 375,
@@ -392,6 +440,7 @@ export const products: Product[] = [
     carbsPer100g: 45,
   },
   {
+    source: "built-in",
     id: "snickers",
     title: "Snickers",
     caloriesPer100g: 486,
@@ -400,6 +449,7 @@ export const products: Product[] = [
     carbsPer100g: 61.6,
   },
   {
+    source: "built-in",
     id: "sprite",
     title: "Sprite обычный",
     caloriesPer100g: 40,
@@ -408,6 +458,7 @@ export const products: Product[] = [
     carbsPer100g: 10,
   },
   {
+    source: "built-in",
     id: "top-drink",
     title: "Молочный напиток TOP",
     caloriesPer100g: 60,
@@ -416,6 +467,7 @@ export const products: Product[] = [
     carbsPer100g: 9.5,
   },
   {
+    source: "built-in",
     id: "drinking-yogurt",
     title: "Питьевой йогурт",
     caloriesPer100g: 70,
@@ -424,3 +476,5 @@ export const products: Product[] = [
     carbsPer100g: 10.5,
   },
 ];
+
+
