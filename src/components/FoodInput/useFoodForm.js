@@ -1,10 +1,14 @@
 import { useState } from "react";
-import { products } from "../../data/products";
 import { calculateCalories, calculateMacros } from "../../utils/foodEntries";
 import { findProductsByTitle } from "../../utils/products";
 import { parseQuickEntry } from "../../utils/quickEntry";
 
-export const useFoodForm = (addFoodEntry, selectedDate, onSuccess) => {
+export const useFoodForm = (
+  allProducts,
+  addFoodEntry,
+  selectedDate,
+  onSuccess,
+) => {
   const [food, setFood] = useState("");
   const [grams, setGrams] = useState("");
   const [caloriesPer100g, setCaloriesPer100g] = useState("");
@@ -19,7 +23,7 @@ export const useFoodForm = (addFoodEntry, selectedDate, onSuccess) => {
     const { titleText: quickTitle, grams: quickGrams } =
       parseQuickEntry(foodValue);
     const matchedProducts = quickTitle
-      ? findProductsByTitle(products, quickTitle)
+      ? findProductsByTitle(allProducts, quickTitle)
       : [];
 
     setFood(foodValue);
