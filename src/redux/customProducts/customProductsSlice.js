@@ -11,12 +11,18 @@ export const customProductsSlice = createSlice({
     removeCustomProductById: (state, action) => {
       return state.filter((product) => product.id !== action.payload);
     },
+    replaceCustomProducts: (state, action) => {
+      return action.payload;
+    },
   },
   selectors: {
     selectCustomProducts: (state) => state,
   },
 });
 
-export const { addCustomProduct, removeCustomProductById } =
-  customProductsSlice.actions;
+export const {
+  addCustomProduct,
+  removeCustomProductById,
+  replaceCustomProducts,
+} = customProductsSlice.actions;
 export const { selectCustomProducts } = customProductsSlice.selectors;

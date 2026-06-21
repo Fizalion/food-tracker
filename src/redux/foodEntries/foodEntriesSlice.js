@@ -31,14 +31,22 @@ export const foodEntriesSlice = createSlice({
         entry.carbs = action.payload.carbs;
       }
     },
+
+    replaceFoodEntries: (state, action) => {
+      return action.payload;
+    },
   },
   selectors: {
     selectFoodEntries: (state) => state,
   },
 });
 
-export const { addFoodEntry, removeFoodEntryById, updateFoodEntryById } =
-  foodEntriesSlice.actions;
+export const {
+  addFoodEntry,
+  removeFoodEntryById,
+  updateFoodEntryById,
+  replaceFoodEntries,
+} = foodEntriesSlice.actions;
 export const { selectFoodEntries } = foodEntriesSlice.selectors;
 
 export const selectAvailableDates = createSelector(
