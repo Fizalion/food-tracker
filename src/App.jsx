@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import CustomProductsPage from "./pages/CustomProductsPage/CustomProductsPage";
+import DataPage from "./pages/DataPage/DataPage";
 import DiaryPage from "./pages/DiaryPage/DiaryPage";
 import HistoryPage from "./pages/HistoryPage/HistoryPage";
 import StatisticsPage from "./pages/StatisticsPage/StatisticsPage";
@@ -32,6 +33,7 @@ function App() {
         <Route path="/products" element={<CustomProductsPage />} />
         <Route path="/history" element={<HistoryPage />} />
         <Route path="/statistics" element={<StatisticsPage />} />
+        <Route path="/data" element={<DataPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Layout>
