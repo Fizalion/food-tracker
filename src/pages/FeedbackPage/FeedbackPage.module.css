@@ -1,0 +1,53 @@
+.page {
+  display: grid;
+  gap: 24px;
+}
+
+.header {
+  display: grid;
+  gap: 8px;
+}
+
+.title {
+  margin: 0;
+  color: #8bd7df;
+  font-size: 34px;
+  line-height: 1.15;
+  text-shadow: 0 0 12px rgba(139, 215, 223, 0.26);
+}
+
+.description,
+.privacyText {
+  margin: 0;
+  color: #9eb9c4;
+  line-height: 1.55;
+}
+
+.feedbackSection {
+  display: grid;
+  gap: 18px;
+  max-width: 760px;
+  padding: 20px;
+  border: 1px solid rgba(91, 172, 184, 0.22);
+  border-radius: 8px;
+  background: rgba(7, 13, 32, 0.72);
+}
+
+.privacyText {
+  padding-left: 12px;
+  border-left: 3px solid #8bd7df;
+}
+
+.actions {
+  justify-self: start;
+}
+
+@media (max-width: 560px) {
+  .actions {
+    justify-self: stretch;
+  }
+
+  .actions > * {
+    width: 100%;
+  }
+}

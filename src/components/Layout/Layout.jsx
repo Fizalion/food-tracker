@@ -51,6 +51,15 @@ const Layout = ({ children }) => {
           >
             Данные
           </NavLink>
+
+          <NavLink
+            to="/feedback"
+            className={({ isActive }) =>
+              isActive ? `${styles.link} ${styles.active}` : styles.link
+            }
+          >
+            Обратная связь
+          </NavLink>
         </nav>
       </header>
 
