@@ -5,6 +5,7 @@ import Layout from "./components/Layout/Layout";
 import CustomProductsPage from "./pages/CustomProductsPage/CustomProductsPage";
 import DataPage from "./pages/DataPage/DataPage";
 import DiaryPage from "./pages/DiaryPage/DiaryPage";
+import FeedbackPage from "./pages/FeedbackPage/FeedbackPage";
 import HistoryPage from "./pages/HistoryPage/HistoryPage";
 import StatisticsPage from "./pages/StatisticsPage/StatisticsPage";
 import { selectCalorieGoal } from "./redux/calorieGoal/calorieGoalSlice";
@@ -34,6 +35,7 @@ function App() {
         <Route path="/history" element={<HistoryPage />} />
         <Route path="/statistics" element={<StatisticsPage />} />
         <Route path="/data" element={<DataPage />} />
+        <Route path="/feedback" element={<FeedbackPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Layout>
