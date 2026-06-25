@@ -39,6 +39,7 @@
   border-radius: 8px;
   color: #9eb9c4;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .link:hover {
@@ -108,10 +109,13 @@
 
   .nav {
     width: 100%;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: thin;
   }
 
   .link {
-    flex: 1;
+    flex: 0 0 auto;
     justify-content: center;
   }
 

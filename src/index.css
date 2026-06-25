@@ -22,6 +22,14 @@ a {
 }
 
 button,
-input {
+input,
+textarea,
+select {
   font: inherit;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #78909d;
+  opacity: 1;
 }
