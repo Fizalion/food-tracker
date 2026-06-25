@@ -10,8 +10,8 @@
 }
 
 .list {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 10px;
   margin: 0;
   padding: 0;
@@ -19,7 +19,28 @@
 }
 
 .item {
-  display: flex;
+  min-width: 0;
+}
+
+.dateButton {
+  width: 100%;
+  justify-content: flex-start;
+  border-color: rgba(139, 215, 223, 0.28);
+  color: #d7e7ec;
+  background: rgba(91, 172, 184, 0.12);
+  box-shadow: none;
+}
+
+.dateButton:hover:not(:disabled) {
+  border-color: rgba(139, 215, 223, 0.5);
+  color: #081420;
+  background: #8bd7df;
+}
+
+.dateButton:disabled {
+  border-color: rgba(201, 132, 180, 0.4);
+  color: #f0c7df;
+  background: rgba(201, 132, 180, 0.14);
 }
 
 .empty {
@@ -28,4 +49,14 @@
   border-radius: 8px;
   color: #9eb9c4;
   background: rgba(7, 13, 32, 0.72);
+}
+
+@media (max-width: 560px) {
+  .title {
+    font-size: 21px;
+  }
+
+  .list {
+    grid-template-columns: 1fr;
+  }
 }

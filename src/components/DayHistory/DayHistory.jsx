@@ -17,6 +17,7 @@ const DayHistory = ({ availableDates, selectedDate, onSelectDate }) => {
               return (
                 <li key={date} className={styles.item}>
                   <Button
+                    className={styles.dateButton}
                     disabled={isSelected}
                     onClick={() => onSelectDate(date)}
                   >
