@@ -17,6 +17,7 @@ import {
   createBackupData,
   downloadBackupFile,
   isBackupData,
+  isBackupFileSizeAllowed,
   parseBackupJson,
   readBackupFile,
   serializeBackupData,
@@ -39,6 +40,12 @@ const DataPage = () => {
   const handleImport = async (event) => {
     const file = event.target.files?.[0];
     if (!file) return;
+    if (!isBackupFileSizeAllowed(file)) {
+      setImportMessage("Файл слишком большой. Максимальный размер — 1 МБ");
+      event.target.value = "";
+      return;
+    }
+
     const data = await readBackupFile(file);
     const parseData = parseBackupJson(data);
     if (!isBackupData(parseData)) {
