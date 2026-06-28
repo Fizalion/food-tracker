@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/Button/Button";
@@ -22,6 +23,10 @@ import styles from "./DiaryPage.module.css";
 const DiaryPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const calorieGoalInputRef = useRef(null);
+  const [isOnboardingVisible, setIsOnboardingVisible] = useState(
+    localStorage.getItem("logfood:onboarding-seen") !== "true",
+  );
 
   const { date } = useParams();
   const selectedDate = date ? date : getTodayDateKey();
@@ -50,6 +55,11 @@ const DiaryPage = () => {
     dispatch(setCalorieGoal(goal));
   };
 
+  const handleCloseOnboarding = () => {
+    localStorage.setItem("logfood:onboarding-seen", "true");
+    setIsOnboardingVisible(false);
+  };
+
   return (
     <div className={styles.page}>
       <div className={styles.header}>
@@ -75,22 +85,46 @@ const DiaryPage = () => {
           <Button onClick={() => handleSelectDate(getTodayDateKey())}>
             Сегодня
           </Button>
-
-          <div className={styles.controlField}>
-            <label className={styles.label} htmlFor="change-calorie-goal">
-              Цель на день
-            </label>
-            <input
-              className={styles.dateInput}
-              id="change-calorie-goal"
-              value={calorieGoal}
-              onChange={handleCalorieGoalChange}
-              type="number"
-              min="1"
-            />
-          </div>
         </div>
       </div>
+
+      <div className={styles.goalPanel}>
+        <label className={styles.goalLabel} htmlFor="calorie-goal-input">
+          Дневная цель
+        </label>
+        <input
+          className={styles.goalInput}
+          id="calorie-goal-input"
+          value={calorieGoal}
+          onChange={handleCalorieGoalChange}
+          ref={calorieGoalInputRef}
+          type="number"
+          min="1"
+        />
+        <p>ккал</p>
+        <Button
+          type="button"
+          onClick={() => calorieGoalInputRef.current?.focus()}
+        >
+          Изменить
+        </Button>
+      </div>
+
+      {isOnboardingVisible && (
+        <div className={styles.onboarding}>
+          <h2 className={styles.onboardingTitle}>Добро пожаловать!</h2>
+          <ul className={styles.onboardingList}>
+            <li>Настройте дневную цель калорий под себя</li>
+            <li>Добавляйте еду по названию, весу и калорийности.</li>
+            <li>Смотрите историю и статистику в верхнем меню.</li>
+          </ul>
+          <div className={styles.onboardingActions}>
+            <Button type="button" onClick={handleCloseOnboarding}>
+              Понятно
+            </Button>
+          </div>
+        </div>
+      )}
 
       <CalorieCircle totalCalories={totalCalories} calorieGoal={calorieGoal} />
 
