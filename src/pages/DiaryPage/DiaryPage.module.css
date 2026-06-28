@@ -57,6 +57,77 @@
   outline: 2px solid rgba(139, 215, 223, 0.18);
 }
 
+.goalPanel {
+  justify-self: start;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid rgba(139, 215, 223, 0.28);
+  border-radius: 8px;
+  background: rgba(7, 13, 32, 0.72);
+}
+
+.goalLabel {
+  color: #8bd7df;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.goalInput {
+  width: 110px;
+  min-height: 38px;
+  padding: 8px 10px;
+  border: 1px solid rgba(91, 172, 184, 0.34);
+  border-radius: 8px;
+  color: #d7e7ec;
+  background: rgba(7, 13, 32, 0.92);
+  font-weight: 800;
+}
+
+.goalInput:focus {
+  border-color: #8bd7df;
+  outline: 2px solid rgba(139, 215, 223, 0.18);
+}
+
+.goalPanel p {
+  margin: 0;
+  color: #9eb9c4;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.onboarding {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid rgba(212, 155, 196, 0.28);
+  border-radius: 8px;
+  background: rgba(7, 13, 32, 0.76);
+}
+
+.onboardingTitle {
+  margin: 0;
+  color: #d49bc4;
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.onboardingList {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 20px;
+  color: #d7e7ec;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.onboardingActions {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .macrosSummary {
   justify-self: start;
   padding: 10px 12px;
@@ -80,6 +151,24 @@
 
   .controlField,
   .dateInput {
+    flex: 1;
+  }
+
+  .goalPanel {
+    justify-self: stretch;
+    flex-wrap: wrap;
+  }
+
+  .goalInput {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .onboardingActions {
+    justify-content: stretch;
+  }
+
+  .onboardingActions > * {
     flex: 1;
   }
 
