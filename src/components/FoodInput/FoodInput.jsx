@@ -8,15 +8,25 @@ import Button from "../Button/Button";
 import styles from "./FoodInput.module.css";
 import { useFoodForm } from "./useFoodForm";
 
-const FoodInput = ({ addFoodEntry, selectedDate }) => {
+const FoodInput = ({ addFoodEntry, selectedDate, recentFoodEntries }) => {
   const customProducts = useSelector(selectCustomProducts);
   const allProducts = getAllProducts(products, customProducts);
 
   const foodInputRef = useRef(null);
   const focusOnFoodInput = () => foodInputRef.current?.focus();
 
+  const gramsInputRef = useRef(null);
+  const focusAndSelectGramsInput = () => {
+    const gramsInput = gramsInputRef.current;
+    if (!gramsInput) return;
+
+    setTimeout(() => {
+      gramsInput.focus();
+      gramsInput.select();
+    });
+  };
+
   const {
-    handleSubmit,
     food,
     handleFoodChange,
     grams,
@@ -26,13 +36,23 @@ const FoodInput = ({ addFoodEntry, selectedDate }) => {
     error,
     handleSelectProduct,
     isProductSelected,
-  } = useFoodForm(allProducts, addFoodEntry, selectedDate, focusOnFoodInput);
+    handleSubmit,
+    handleSelectRecentFoodEntry,
+  } = useFoodForm(
+    allProducts,
+    addFoodEntry,
+    selectedDate,
+    focusOnFoodInput,
+    focusAndSelectGramsInput,
+  );
 
   const quickEntry = parseQuickEntry(food);
   const searchValue = quickEntry.titleText;
   const suggestedProducts = findProductsByTitle(allProducts, searchValue);
   const shouldShowSuggestions =
     suggestedProducts.length > 0 && !isProductSelected;
+
+  const shouldShowRecentFoodEntries = recentFoodEntries.length > 0;
 
   return (
     <form className={styles.form} onSubmit={handleSubmit} noValidate>
@@ -63,6 +83,25 @@ const FoodInput = ({ addFoodEntry, selectedDate }) => {
         )}
       </div>
 
+      {shouldShowRecentFoodEntries && (
+        <div className={styles.recent}>
+          <h2 className={styles.recentTitle}>Недавние продукты</h2>
+          <p className={styles.recentHint}>Нажмите, чтобы заполнить форму</p>
+          <div className={styles.recentList}>
+            {recentFoodEntries.map((entry) => (
+              <Button
+                className={styles.recentButton}
+                key={entry.id}
+                type="button"
+                onClick={() => handleSelectRecentFoodEntry(entry)}
+              >
+                {entry.title} · {entry.grams} г
+              </Button>
+            ))}
+          </div>
+        </div>
+      )}
+
       <div className={styles.field}>
         <label className={styles.label} htmlFor="food-grams">
           Вес, г
@@ -72,6 +111,7 @@ const FoodInput = ({ addFoodEntry, selectedDate }) => {
           id="food-grams"
           type="number"
           min="1"
+          ref={gramsInputRef}
           value={grams}
           onChange={handleGramsChange}
         />
