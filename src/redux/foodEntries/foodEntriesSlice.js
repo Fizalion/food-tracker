@@ -1,7 +1,10 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { RECENT_FOOD_ENTRIES_LIMIT } from "../../constants";
 import {
+  createRepeatedFoodEntry,
   getAvailableDates,
   getEntriesByDate,
+  getRecentFoodEntries,
   getTotalCalories,
   getTotalMacros,
 } from "../../utils/foodEntries";
@@ -35,6 +38,11 @@ export const foodEntriesSlice = createSlice({
     replaceFoodEntries: (state, action) => {
       return action.payload;
     },
+
+    repeatFoodEntry: (state, action) => {
+      const repeatedEntry = createRepeatedFoodEntry(action.payload);
+      state.push(repeatedEntry);
+    },
   },
   selectors: {
     selectFoodEntries: (state) => state,
@@ -46,7 +54,9 @@ export const {
   removeFoodEntryById,
   updateFoodEntryById,
   replaceFoodEntries,
+  repeatFoodEntry,
 } = foodEntriesSlice.actions;
+
 export const { selectFoodEntries } = foodEntriesSlice.selectors;
 
 export const selectAvailableDates = createSelector(
@@ -67,4 +77,9 @@ export const selectTotalCaloriesByDate = createSelector(
 export const selectTotalMacrosByDate = createSelector(
   [selectFoodEntriesByDate],
   (entriesByDate) => getTotalMacros(entriesByDate),
+);
+
+export const selectRecentFoodEntries = createSelector(
+  [selectFoodEntries],
+  (entries) => getRecentFoodEntries(entries, RECENT_FOOD_ENTRIES_LIMIT),
 );

@@ -8,6 +8,7 @@ export const useFoodForm = (
   addFoodEntry,
   selectedDate,
   onSuccess,
+  onRecentEntrySelected,
 ) => {
   const [food, setFood] = useState("");
   const [grams, setGrams] = useState("");
@@ -51,6 +52,18 @@ export const useFoodForm = (
     setCarbsPer100g(String(selectedProduct.carbsPer100g));
     setIsProductSelected(true);
     setError("");
+  };
+
+  const handleSelectRecentFoodEntry = (entry) => {
+    setFood(entry.title);
+    setGrams(String(entry.grams));
+    setCaloriesPer100g(String(entry.caloriesPer100g));
+    setProteinsPer100g(String(entry.proteinsPer100g));
+    setFatsPer100g(String(entry.fatsPer100g));
+    setCarbsPer100g(String(entry.carbsPer100g));
+    setIsProductSelected(true);
+    setError("");
+    onRecentEntrySelected?.();
   };
 
   const handleSubmit = (event) => {
@@ -129,5 +142,6 @@ export const useFoodForm = (
     error,
     isProductSelected,
     handleSelectProduct,
+    handleSelectRecentFoodEntry,
   };
 };

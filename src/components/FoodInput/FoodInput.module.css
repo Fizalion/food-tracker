@@ -73,6 +73,53 @@
   background: #8bd7df;
 }
 
+.recent {
+  display: grid;
+  grid-column: 1 / -1;
+  gap: 7px;
+  padding-top: 0;
+}
+
+.recentTitle {
+  margin: 0;
+  color: #9eb9c4;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.recentHint {
+  margin: -2px 0 0;
+  color: #7f9ead;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.recentList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.recentButton {
+  max-width: 100%;
+  min-height: 30px;
+  padding: 5px 9px;
+  border-color: rgba(139, 215, 223, 0.22);
+  color: #b9d3dc;
+  background: rgba(139, 215, 223, 0.05);
+  box-shadow: none;
+  overflow-wrap: anywhere;
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+.recentButton:hover:not(:disabled) {
+  border-color: rgba(139, 215, 223, 0.62);
+  color: #081420;
+  background: #8bd7df;
+  box-shadow: 0 0 12px rgba(139, 215, 223, 0.12);
+}
+
 .error {
   grid-column: 1 / -1;
   padding: 10px 12px;

@@ -1,4 +1,5 @@
 import type { FoodEntry } from "../types/foodEntry";
+import { getTodayDateKey } from "./date";
 
 type CalculatedMacros = {
   proteins: number;
@@ -61,3 +62,33 @@ export const getAvailableDates = (entries: FoodEntry[]): string[] =>
   [...new Set(entries.map((entry) => entry.date))].sort((a, b) =>
     b.localeCompare(a),
   );
+
+export const createRepeatedFoodEntry = (entry: FoodEntry): FoodEntry => {
+  return {
+    ...entry,
+    id: Date.now(),
+    date: getTodayDateKey(),
+    createdAt: new Date().toISOString(),
+  };
+};
+
+export const getRecentFoodEntries = (
+  entries: FoodEntry[],
+  limit: number,
+): FoodEntry[] => {
+  const copiedEntries = [...entries].sort((a, b) =>
+    b.createdAt.localeCompare(a.createdAt),
+  );
+  const seenTitles = new Set<string>();
+  const recentEntries: FoodEntry[] = [];
+
+  for (const entry of copiedEntries) {
+    const normalizedTitle = entry.title.trim().toLowerCase();
+    if (!seenTitles.has(normalizedTitle)) {
+      seenTitles.add(normalizedTitle);
+      recentEntries.push(entry);
+      if (recentEntries.length === limit) break;
+    }
+  }
+  return recentEntries;
+};

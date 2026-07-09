@@ -3,7 +3,12 @@ import Button from "../Button/Button";
 import styles from "./FoodEntry.module.css";
 import { useFoodEntryEdit } from "./useFoodEntryEdit";
 
-const FoodEntry = ({ entry, removeFoodEntryById, updateFoodEntryById }) => {
+const FoodEntry = ({
+  entry,
+  removeFoodEntryById,
+  updateFoodEntryById,
+  repeatFoodEntry,
+}) => {
   const { id, title, calories, grams, proteins, fats, carbs } = entry;
 
   const {
@@ -25,6 +30,7 @@ const FoodEntry = ({ entry, removeFoodEntryById, updateFoodEntryById }) => {
   const handleStartDelete = () => setIsConfirmingDelete(true);
   const handleCancelDelete = () => setIsConfirmingDelete(false);
   const handleConfirmDelete = () => removeFoodEntryById(id);
+  const handleRepeatClick = () => repeatFoodEntry(entry);
 
   const handleEditClick = () => {
     setIsConfirmingDelete(false);
@@ -80,6 +86,7 @@ const FoodEntry = ({ entry, removeFoodEntryById, updateFoodEntryById }) => {
 
           {isConfirmingDelete === false && (
             <div className={styles.actions}>
+              <Button onClick={handleRepeatClick}>Повторить</Button>
               <Button onClick={handleEditClick}>Редактировать</Button>
               <Button onClick={handleStartDelete}>Удалить</Button>
             </div>

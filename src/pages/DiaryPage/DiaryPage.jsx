@@ -12,7 +12,9 @@ import {
 import {
   addFoodEntry,
   removeFoodEntryById,
+  repeatFoodEntry,
   selectFoodEntriesByDate,
+  selectRecentFoodEntries,
   selectTotalCaloriesByDate,
   selectTotalMacrosByDate,
   updateFoodEntryById,
@@ -34,6 +36,7 @@ const DiaryPage = () => {
   const selectedDateEntries = useSelector((state) =>
     selectFoodEntriesByDate(state, selectedDate),
   );
+  const recentFoodEntries = useSelector(selectRecentFoodEntries);
   const totalCalories = useSelector((state) =>
     selectTotalCaloriesByDate(state, selectedDate),
   );
@@ -46,6 +49,7 @@ const DiaryPage = () => {
   const handleRemoveFoodEntryById = (id) => dispatch(removeFoodEntryById(id));
   const handleUpdateFoodEntryById = (entry) =>
     dispatch(updateFoodEntryById(entry));
+  const handleRepeatFoodEntry = (entry) => dispatch(repeatFoodEntry(entry));
 
   const handleSelectDate = (date) => navigate(`/day/${date}`);
 
@@ -136,12 +140,14 @@ const DiaryPage = () => {
       <FoodInput
         addFoodEntry={handleAddFoodEntry}
         selectedDate={selectedDate}
+        recentFoodEntries={recentFoodEntries}
       />
 
       <FoodList
         entries={selectedDateEntries}
         removeFoodEntryById={handleRemoveFoodEntryById}
         updateFoodEntryById={handleUpdateFoodEntryById}
+        repeatFoodEntry={handleRepeatFoodEntry}
       />
     </div>
   );
